@@ -33,7 +33,7 @@ class App(CallbackAdapter):
           k = j['vehicleId']
         else:
           k = '9EBwea1UeivCVHQ4Wbm4jyFNN2FWMa97yQBhupwCrxnt'
-        print('Send: ', m, ' key: ', k)
+        print('Send with key: ', k)
         self.client.send_data_to_bdb(m, k)
         if msg.body == "die":
             self.stop()
