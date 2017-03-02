@@ -2,6 +2,7 @@
 
 # Read IoT events from the Event Hubs endpoint and send them to BigChainDB.
 
+import json
 from async import *
 from bcdbclient import BigChainDBClient
 
@@ -25,7 +26,15 @@ class App(CallbackAdapter):
 
     def on_recv(self, msg):
         print("Received:", msg)
-        self.client.send_data_to_bdb(msg.body.decode('utf-8'), '9EBwea1UeivCVHQ4Wbm4jyFNN2FWMa97yQBhupwCrxnt')
+        m = msg.body.decode('utf-8')
+        j = json.loads(m)
+        k = ''
+        if 'vehicleId' in j:
+          k = j['vehicleId']
+        else:
+          k = '9EBwea1UeivCVHQ4Wbm4jyFNN2FWMa97yQBhupwCrxnt'
+        print('Send: ', m, ' key: ', k)
+        self.client.send_data_to_bdb(m, k)
         if msg.body == "die":
             self.stop()
 
