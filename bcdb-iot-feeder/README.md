@@ -1,4 +1,4 @@
-= BigChainDB IoT Hub Feeder
+# BigChainDB IoT Hub Feeder
 
 The feeder receives the device messages from IoT Hub, using an AMQP link to the Event Hubs endpoint. It then feeds them to BigChainDB using the Python driver.
 
